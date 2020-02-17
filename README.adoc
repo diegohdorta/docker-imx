@@ -98,14 +98,14 @@ The following steps can be used in any i.MX BSP releases. The latest BSP availab
 +
 . Update the `local.conf` adding the next packages and configurations:
 +
-.. Add an extra space to the image:
+.. Extra space to the image:
 +
 [source,console]
 ----
 IMAGE_ROOTFS_EXTRA_SPACE = " 5000000 "
 ----
 +
-.. Add Docker requirements:
+.. Docker requirements:
 +
 [source,console]
 ----
@@ -114,7 +114,7 @@ IMAGE_INSTALL_append += " docker docker-contrib connman connman-client "
 CORE_IMAGE_EXTRA_INSTALL += " openssh "
 ----
 +
-.. Add basic development capabilities:
+.. Basic development capabilities:
 +
 [source,console]
 ----
@@ -122,14 +122,14 @@ EXTRA_IMAGE_FEATURES = " dev-pkgs debug-tweaks tools-debug ssh-server-openssh "
 TOOLCHAIN_HOST_TASK_append = " nativesdk-cmake nativesdk-make "
 ----
 +
-.. Add networking capabilities:
+.. Networking capabilities:
 +
 [source,console]
 ----
 IMAGE_INSTALL_append = " net-tools iputils dhcpcd "
 ----
 +
-.. Add generic tools:
+.. Generic tools:
 +
 [source,console]
 ----
@@ -151,7 +151,7 @@ IMAGE_INSTALL_append = " wget git zlib vim tar unzip grep tmux swig  cmake make 
 [source,console]
 ----
 ~yocto/bld-dir$ cd tmp/deploy/images/
-~yocto/bld-dir/tmp/deploy/images/$ bunzip <image>.sdcard.bzip2
+~yocto/bld-dir/tmp/deploy/images/$ bunzip2 <image>.sdcard.bzip2
 ----
 +
 .. Flash the image:
