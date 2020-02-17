@@ -1,3 +1,11 @@
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
 = i.MX Docker Applications
 
 This repo is intend to explain how to run applications (_OpenCL_, _OpenCV_, _Machine Learning_, etc.) using https://www.docker.com/resources/what-container[Docker Container] on https://source.codeaurora.org/external/imx/imx-manifest/[i.MX BSP releases] - the hardware used
