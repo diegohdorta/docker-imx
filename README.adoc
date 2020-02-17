@@ -3,14 +3,19 @@
 This repo is intend to explain how to run applications (_OpenCL_, _OpenCV_, _Machine Learning_, etc.) using https://www.docker.com/resources/what-container[Docker Container] on https://source.codeaurora.org/external/imx/imx-manifest/[i.MX BSP releases]. The hardware used
 in this tutorial is an https://www.nxp.com/design/development-boards/i.mx-evaluation-and-development-boards/i.mx-8quadmax-multisensory-enablement-kit-mek:MCIMX8QM-CPU[i.MX8 QM MEK Board].
 
+Before starting with Docker, ensure you have an i.MX image with all dependencies installed: <<building_yocto>>.
+
+You can test the following applications using Docker on i.MX:
+
+* https://github.com/diegohdorta/docker-imx/tree/master/docker/clpeak[Clpeak - Benchmarking Tool to Measure Peak Capabilities of OpenCL Devices].
+
 [NOTE]
 ====
 This tutorial is fully based on GNU/Linux Distribution Ubuntu `18.04` as host machine.
 ====
 
+[[building_yocto]]
 == Building Yocto Image
-
-Before starting with Docker, ensure you have an i.MX image with all dependencies installed.
 
 === Software Requirements
 
