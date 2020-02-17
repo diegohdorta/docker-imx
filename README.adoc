@@ -146,12 +146,25 @@ IMAGE_INSTALL_append = " wget git zlib vim tar unzip grep tmux swig  cmake make 
 +
 . To flash the image to `SD Card`:
 +
+.. Uncompress the image:
++
 [source,console]
 ----
 ~yocto/bld-dir$ cd tmp/deploy/images/
 ~yocto/bld-dir/tmp/deploy/images/$ bunzip <image>.sdcard.bzip2
+----
++
+.. Flash the image:
++
+[source,console]
+----
 ~yocto/bld-dir/tmp/deploy/images/# dd if=<image>.sdcard of=/dev/sd<x> bs=1M status=progress && sync
 ----
++
+[CAUTION]
+====
+_**<x>**_ refers to the SD Card device. You can check by listing the block devices: `lsblk`.
+====
 
 
 
