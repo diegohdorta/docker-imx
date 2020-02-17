@@ -81,7 +81,7 @@ The following steps can be used in any i.MX BSP releases. The latest BSP availab
 ~yocto/bld-dir$ echo "BBLAYERS += \" \${BSPDIR}/sources/meta-virtualization \"" >> conf/bblayers.conf
 ----
 +
-. Update the `local.conf` adding the next packages:
+. Update the `local.conf` adding the next packages and configurations:
 +
 .. Add an extra space to the image:
 +
