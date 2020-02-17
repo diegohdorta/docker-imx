@@ -1,6 +1,6 @@
 = i.MX Docker Applications
 
-This repo is intend to explain how to run applications (OpenCL, OpenCV, Machine Learning, etc.) using Docker containers on i.MX BSP releases. The hardware used
+This repo is intend to explain how to run applications (_OpenCL_, _OpenCV_, _Machine Learning_, etc.) using https://www.docker.com/resources/what-container[Docker Container] on https://source.codeaurora.org/external/imx/imx-manifest/[i.MX BSP releases]. The hardware used
 in this tutorial is an https://www.nxp.com/design/development-boards/i.mx-evaluation-and-development-boards/i.mx-8quadmax-multisensory-enablement-kit-mek:MCIMX8QM-CPU[i.MX8 QM MEK Board].
 
 
@@ -24,7 +24,7 @@ ubuntu# apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib b
 +
 . Install the essential packages for _Yocto Project_ layers:
 +
-[source,%autofit]
+[source,console]
 ----
 ubuntu# apt-get install libsdl1.2-dev xterm sed cvs subversion coreutils texi2html docbook-utils python-pysqlite2 help2man gcc g++ make
 desktop-file-utils libgl1-mesa-dev libglu1-mesa-dev mercurial autoconf automake groff curl lzop asciidoc u-boot-tools
