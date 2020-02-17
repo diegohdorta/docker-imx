@@ -138,11 +138,7 @@ IMAGE_INSTALL_append = " wget git zlib vim tar unzip grep tmux swig  cmake make 
 ~yocto/bld-dir/tmp/deploy/images/$ bunzip <image>.sdcard.bzip2
 ~yocto/bld-dir/tmp/deploy/images/# dd if=<image>.sdcard of=/dev/sd<x> bs=1M status=progress && sync
 ----
-+
-+
 
-
-=== Getting Started with Docker
 
 
 
