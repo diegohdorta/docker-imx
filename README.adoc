@@ -1,9 +1,11 @@
 = i.MX Docker Applications
 
-This repo is intend to explain how to run applications (_OpenCL_, _OpenCV_, _Machine Learning_, etc.) using https://www.docker.com/resources/what-container[Docker Container] on https://source.codeaurora.org/external/imx/imx-manifest/[i.MX BSP releases]. The hardware used
+This repo is intend to explain how to run applications (_OpenCL_, _OpenCV_, _Machine Learning_, etc.) using https://www.docker.com/resources/what-container[Docker Container] on https://source.codeaurora.org/external/imx/imx-manifest/[i.MX BSP releases] - the hardware used
 in this tutorial is an https://www.nxp.com/design/development-boards/i.mx-evaluation-and-development-boards/i.mx-8quadmax-multisensory-enablement-kit-mek:MCIMX8QM-CPU[i.MX8 QM MEK Board].
 
-Before starting with Docker, ensure you have an i.MX image with all dependencies installed: <<building_yocto>>.
+Before starting with Docker, ensure you have an i.MX image with all dependencies installed: 
+
+* <<building_yocto>>.
 
 You can test the following applications using Docker on i.MX:
 
@@ -33,10 +35,9 @@ This tutorial is fully based on GNU/Linux Distribution Ubuntu `18.04` as host ma
 +
 [source,console]
 ----
-~# apt install libsdl1.2-dev xterm sed cvs subversion coreutils texi2html \
-   docbook-utils python-pysqlite2 help2man gcc g++ make desktop-file-utils \
-   libgl1-mesa-dev libglu1-mesa-dev mercurial autoconf automake groff curl \
-   lzop asciidoc u-boot-tools
+~# apt install libsdl1.2-dev xterm sed cvs subversion coreutils texi2html docbook-utils \
+   python-pysqlite2 help2man gcc g++ make desktop-file-utils libgl1-mesa-dev libglu1-mesa-dev \
+   mercurial autoconf automake groff curl lzop asciidoc u-boot-tools
 ----
 
 === Setting Up Yocto Environment
