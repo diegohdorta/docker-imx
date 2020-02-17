@@ -78,7 +78,7 @@ The following steps can be used in any i.MX BSP releases. The latest BSP availab
 +
 [source,console]
 ----
-~yocto$ echo "BBLAYERS += \" \${BSPDIR}/sources/meta-virtualization \"" >> conf/bblayers.conf
+~yocto/bld-dir$ echo "BBLAYERS += \" \${BSPDIR}/sources/meta-virtualization \"" >> conf/bblayers.conf
 ----
 +
 . Update the `local.conf` adding the next packages:
