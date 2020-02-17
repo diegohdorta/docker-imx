@@ -18,7 +18,8 @@ Before starting with Docker, ensure you have an i.MX image with all dependencies
 +
 [source,console]
 ----
-~# apt-get install gawk wget git-core diffstat unzip texinfo \
+~# apt update
+~# apt install gawk wget git-core diffstat unzip texinfo \
    gcc-multilib build-essential chrpath socat libsdl1.2-dev
 ----
 +
@@ -26,7 +27,7 @@ Before starting with Docker, ensure you have an i.MX image with all dependencies
 +
 [source,console]
 ----
-~# apt-get install libsdl1.2-dev xterm sed cvs subversion coreutils texi2html \
+~# apt install libsdl1.2-dev xterm sed cvs subversion coreutils texi2html \
    docbook-utils python-pysqlite2 help2man gcc g++ make desktop-file-utils \
    libgl1-mesa-dev libglu1-mesa-dev mercurial autoconf automake groff curl \
    lzop asciidoc u-boot-tools
