@@ -42,7 +42,7 @@ The following steps can be used in any i.MX BSP releases. The latest BSP availab
 
 . Follow the steps on https://source.codeaurora.org/external/imx/imx-manifest/about/[imx-manifest] to download manifests for i.MX BSP releases.
 +
-. Create an folder:
+. Create a folder:
 +
 [source,console]
 ----
@@ -62,7 +62,7 @@ The following steps can be used in any i.MX BSP releases. The latest BSP availab
 +
 [source,console]
 ----
-~$ git clone https://git.yoctoproject.org/git/meta-virtualization sources/meta-virtualization -b warrior
+~yocto$ git clone https://git.yoctoproject.org/git/meta-virtualization sources/meta-virtualization -b warrior
 ----
 
 === Yocto Building Process
@@ -71,14 +71,14 @@ The following steps can be used in any i.MX BSP releases. The latest BSP availab
 +
 [source,console]
 ----
-~$ EULA=1 MACHINE=imx8qmmek DISTRO=fsl-imx-xwayland source ./fsl-setup-release.sh -b bld-dir
+~yocto$ EULA=1 MACHINE=imx8qmmek DISTRO=fsl-imx-xwayland source ./fsl-setup-release.sh -b bld-dir
 ----
 +
 . Update the `bblayers.conf` file adding the _meta-virtualization_ layer:
 +
 [source,console]
 ----
-~$ echo "BBLAYERS += \" \${BSPDIR}/sources/meta-virtualization \"" >> conf/bblayers.conf
+~yocto$ echo "BBLAYERS += \" \${BSPDIR}/sources/meta-virtualization \"" >> conf/bblayers.conf
 ----
 +
 
