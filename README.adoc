@@ -3,10 +3,9 @@
 This repo is intend to explain how to run applications (_OpenCL_, _OpenCV_, _Machine Learning_, etc.) using https://www.docker.com/resources/what-container[Docker Container] on https://source.codeaurora.org/external/imx/imx-manifest/[i.MX BSP releases]. The hardware used
 in this tutorial is an https://www.nxp.com/design/development-boards/i.mx-evaluation-and-development-boards/i.mx-8quadmax-multisensory-enablement-kit-mek:MCIMX8QM-CPU[i.MX8 QM MEK Board].
 
-
 [NOTE]
 ====
-This tutorial is fully based on _GNU/Linux Distribution Ubuntu 18.04_ as host machine.
+This tutorial is fully based on GNU/Linux Distribution Ubuntu `18.04` as host machine.
 ====
 
 == Building Yocto Image
@@ -19,34 +18,42 @@ Before starting with Docker, ensure you have an i.MX image with all dependencies
 +
 [source,console]
 ----
-ubuntu# apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat libsdl1.2-dev
+~# apt-get install gawk wget git-core diffstat unzip texinfo \
+   gcc-multilib build-essential chrpath socat libsdl1.2-dev
 ----
 +
 . Install the essential packages for _Yocto Project_ layers:
 +
 [source,console]
 ----
-ubuntu# apt-get install libsdl1.2-dev xterm sed cvs subversion coreutils texi2html docbook-utils python-pysqlite2 help2man gcc g++ make
-desktop-file-utils libgl1-mesa-dev libglu1-mesa-dev mercurial autoconf automake groff curl lzop asciidoc u-boot-tools
+~# apt-get install libsdl1.2-dev xterm sed cvs subversion coreutils texi2html \
+   docbook-utils python-pysqlite2 help2man gcc g++ make desktop-file-utils \
+   libgl1-mesa-dev libglu1-mesa-dev mercurial autoconf automake groff curl \
+   lzop asciidoc u-boot-tools
 ----
 
 === Setting Up Yocto Environment
 
-. Follow the steps on https://source.codeaurora.org/external/imx/imx-manifest/about/[imx-manifest] to download manifests for _i.MX BSP releases_:
+[IMPORTANT]
+====
+The following steps can be used in any i.MX BSP releases. The latest BSP available is `4.19.35`.
+====
+
+. Follow the steps on https://source.codeaurora.org/external/imx/imx-manifest/about/[imx-manifest] to download manifests for i.MX BSP releases:
 +
-. Use the latest https://source.codeaurora.org/external/imx/imx-manifest/log/?h=imx-linux-warrior[imx-linux-warrior] branch from `4.19.35` _i.MX BSP release_:
+. Use the latest https://source.codeaurora.org/external/imx/imx-manifest/log/?h=imx-linux-warrior[imx-linux-warrior] branch from `4.19.35` i.MX BSP release:
 +
 [source,console]
 ----
-ubuntu$ repo init -u git://source.codeaurora.org/external/imx/imx-manifest.git -b imx-linux-warrior -m imx-4.19.35-1.1.0.xml
-ubuntu$ repo sync
+~$ repo init -u git://source.codeaurora.org/external/imx/imx-manifest.git -b imx-linux-warrior -m imx-4.19.35-1.1.0.xml
+~$ repo sync
 ----
 +
 . Retrieve the https://git.yoctoproject.org/cgit/cgit.cgi/meta-virtualization/tree/README[meta-virtualization] layer to _sources_ folder:
 +
 [source,console]
 ----
-ubuntu$ git clone https://git.yoctoproject.org/git/meta-virtualization sources/meta-virtualization -b warrior
+~$ git clone https://git.yoctoproject.org/git/meta-virtualization sources/meta-virtualization -b warrior
 ----
 
 
