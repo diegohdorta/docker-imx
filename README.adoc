@@ -7,6 +7,7 @@ Before starting with Docker, ensure you have an i.MX image with all dependencies
 
 You can test the following applications using Docker on i.MX:
 
+* https://github.com/diegohdorta/docker-imx/tree/master/docker/clinfo[Clinfo - OpenCL Platforms and Devices Printer].
 * https://github.com/diegohdorta/docker-imx/tree/master/docker/clpeak[Clpeak - Benchmarking Tool to Measure Peak Capabilities of OpenCL Devices].
 
 [NOTE]
