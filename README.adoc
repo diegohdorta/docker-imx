@@ -19,8 +19,8 @@ Before starting with Docker, ensure you have an i.MX image with all dependencies
 [source,console]
 ----
 ~# apt update
-~# apt install gawk wget git-core diffstat unzip texinfo \
-   gcc-multilib build-essential chrpath socat libsdl1.2-dev
+~# apt install gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential \
+   chrpath socat libsdl1.2-dev
 ----
 +
 . Install the essential packages for _Yocto Project_ layers:
@@ -40,14 +40,22 @@ Before starting with Docker, ensure you have an i.MX image with all dependencies
 The following steps can be used in any i.MX BSP releases. The latest BSP available is `4.19.35`.
 ====
 
-. Follow the steps on https://source.codeaurora.org/external/imx/imx-manifest/about/[imx-manifest] to download manifests for i.MX BSP releases:
+. Follow the steps on https://source.codeaurora.org/external/imx/imx-manifest/about/[imx-manifest] to download manifests for i.MX BSP releases.
++
+. Create an folder:
++
+[source,console]
+----
+~$ mkdir yocto
+~$ cd yocto
+----
 +
 . Use the latest https://source.codeaurora.org/external/imx/imx-manifest/log/?h=imx-linux-warrior[imx-linux-warrior] branch from `4.19.35` i.MX BSP release:
 +
 [source,console]
 ----
-~$ repo init -u git://source.codeaurora.org/external/imx/imx-manifest.git -b imx-linux-warrior -m imx-4.19.35-1.1.0.xml
-~$ repo sync
+~yocto$ repo init -u git://source.codeaurora.org/external/imx/imx-manifest.git -b imx-linux-warrior -m imx-4.19.35-1.1.0.xml
+~yocto$ repo sync
 ----
 +
 . Retrieve the https://git.yoctoproject.org/cgit/cgit.cgi/meta-virtualization/tree/README[meta-virtualization] layer to _sources_ folder:
@@ -56,6 +64,26 @@ The following steps can be used in any i.MX BSP releases. The latest BSP availab
 ----
 ~$ git clone https://git.yoctoproject.org/git/meta-virtualization sources/meta-virtualization -b warrior
 ----
+
+=== Yocto Building Process
+
+. Create the build project:
++
+[source,console]
+----
+~$ EULA=1 MACHINE=imx8qmmek DISTRO=fsl-imx-xwayland source ./fsl-setup-release.sh -b bld-dir
+----
++
+. Update the `bblayers.conf` file adding the _meta-virtualization_ layer:
++
+[source,console]
+----
+~$ echo "BBLAYERS += \" \${BSPDIR}/sources/meta-virtualization \"" >> conf/bblayers.conf
+----
++
+
+
+
 
 
 
