@@ -1,0 +1,131 @@
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+:source-highlighter: :rouge:
+endif::[]
+
+= Docker Base
+
+This document explains how to create an image from scratch with all the NXP resources for compiling and running examples.
+
+== Docker Initial
+
+. Choose `GNU/Linux Ubuntu 16.04` as your base:
++
+[source,console]
+----
+~# docker pull ubuntu:16.04
+----
++
+. Run the following line:
++
+[source,console]
+----
+~# docker run -it --name first_image -h docker --privileged=true --net=host ubuntu:16.04 /bin/bash
+----
+
+== Docker Configuration
+
+. Install the following packages:
++
+[source,console]
+----
+root@docker:/# apt update
+root@docker:/# apt install -y vim git build-essential checkinstall cifs-utils nfs-common \
+                                  software-properties-common strace gcc cmake wget
+----
++
+. Clean the repositories:
++
+[source,console]
+----
+root@docker:/# apt clean && apt autoremove && rm -rf /var/lib/apt/lists/*
+----
++
+. Download the NXP drivers:
++
+[source,console]
+----
+root@docker:/# wget https://www.nxp.com/lgfiles/NMG/MAD/YOCTO/imx-gpu-viv-6.2.4.p4.0-aarch64.bin
+root@docker:/# chmod +x imx-gpu-viv-6.2.4.p4.0-aarch64.bin
+root@docker:/# ./imx-gpu-viv-6.2.4.p4.0-aarch64.bin --force --auto-accept
+----
++
+. Copy the NXP drivers:
++
+[source,console]
+----
+root@docker:/# mkdir -p /etc/OpenCL/vendors/
+root@docker:/# cp -r imx-gpu-viv-6.2.4.p4.0-aarch64/gpu-core/etc/Vivante.icd /etc/OpenCL/vendors/
+root@docker:/# cp -r imx-gpu-viv-6.2.4.p4.0-aarch64/gpu-core/usr/* /usr
+root@docker:/# cp -r imx-gpu-viv-6.2.4.p4.0-aarch64/gpu-demos/opt/* /opt
+root@docker:/# cp -r imx-gpu-viv-6.2.4.p4.0-aarch64/gpu-tools/gmem-info/* /
+----
++
+. Retrieve the latest libraries:
++
+[source,console]
+----
+root@docker:/# wget diegohdorta/imx-gpu-libraries.zip
+root@docker:/# unzip imx-gpu-libraries.zip && cp imx-gpu-libraries/* /lib/aarch64
+root@docker:/# rm imx-gpu-libraries*
+----
+
+== Docker Testing
+
+=== CLINFO
+
+. Compile the `clinfo` tool:
++
+[source,console]
+----
+root@nxp-docker:/# git clone https://github.com/Oblomov/clinfo.git
+root@nxp-docker:/# cd clinfo
+root@nxp-docker:~/clinfo# make
+----
++
+. Run the `clinfo` tool:
++
+[source,console]
+----
+root@nxp-docker:~/clinfo# ./clinfo
+----
+
+=== CLPEAK
+
+. Download the `clpeak` tool:
++
+[source,console]
+----
+root@nxp-docker:/# git clone https://github.com/krrishnarraj/clpeak.git
+root@nxp-docker:/# cd clpeak
+root@nxp-docker:~/clpeak#  git submodule update --init --recursive --remote
+----
++
+. Compilhe the `clpeak` tool:
++
+[source,console]
+----
+root@nxp-docker:~/clpeak# mkdir build && cd build
+root@nxp-docker:~/clpeak/build# cmake ..
+root@nxp-docker:~/clpeak/build# cmake --build .
+----
++
+[source,console]
+----
+root@nxp-docker:~/clpeak/build# ./clpeak
+----
+
+
+== Docker Commit
+
+. Exit the container by pressing: **CTRL + P**, then **CTRL + Q**.
++
+[source,console]
+----
+~# docker ps -a
+~# docker commit <ID_CONTAINER> <new_image_name>
+----
