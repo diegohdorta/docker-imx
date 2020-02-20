@@ -16,6 +16,10 @@ Before starting with Docker, ensure you have an i.MX image with all dependencies
 
 * <<building_yocto>>.
 
+Create your own image using the following base:
+
+* https://github.com/diegohdorta/docker-imx/tree/master/docker/base[Docker Base for Arm64v8 Ubuntu 16.04].
+
 You can test the following applications using Docker on i.MX:
 
 * https://github.com/diegohdorta/docker-imx/tree/master/docker/clinfo[Clinfo - OpenCL Platforms and Devices Printer].
