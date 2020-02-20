@@ -1,3 +1,12 @@
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+:source-highlighter: :rouge:
+endif::[]
+
 = Benchmarking Tool to Measure Peak Capabilities of OpenCL Devices
 
 This tutorial explains how to compile the https://github.com/krrishnarraj/clpeak.git[Clpeak] on the Docker Container and
@@ -9,14 +18,14 @@ executing it on i.MX host.
 +
 [source,console]
 ----
-~# docker pull torizon/arm64v8-debian-wayland-base-vivante
+root@imx8qmmek:~# docker pull torizon/arm64v8-debian-wayland-base-vivante
 ----
 +
 . Run the Docker:
 +
 [source,console]
 ----
-~# docker run -it --name nxp-clpeak-test -h nxp-docker --privileged=true --net=host torizon/arm64v8-debian-wayland-base-vivante /bin/bash
+root@imx8qmmek:~# docker run -it --name nxp-clpeak-test -h nxp-docker --privileged=true --net=host torizon/arm64v8-debian-wayland-base-vivante /bin/bash
 ----
 
 == Configuring Docker
@@ -68,9 +77,9 @@ Do not exit the Container by typing `exit`.
 +
 [source,console]
 ----
-~# docker ps -a
-~# docker cp <ID_CONTAINER>:/clpeak/build/clpeak .
-~# ./clpeak
+root@imx8qmmek:~# docker ps -a
+root@imx8qmmek:~# docker cp <ID_CONTAINER>:/clpeak/build/clpeak .
+root@imx8qmmek:~# ./clpeak
 ----
 
 .. **EXPECTED OUTPUT**
