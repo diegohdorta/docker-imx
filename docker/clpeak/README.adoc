@@ -18,14 +18,14 @@ executing it on i.MX host.
 +
 [source,console]
 ----
-root@imx8qmmek:~# docker pull torizon/arm64v8-debian-wayland-base-vivante
+~# docker pull torizon/arm64v8-debian-wayland-base-vivante
 ----
 +
 . Run the Docker:
 +
 [source,console]
 ----
-root@imx8qmmek:~# docker run -it --name nxp-clpeak-test -h nxp-docker --privileged=true --net=host torizon/arm64v8-debian-wayland-base-vivante /bin/bash
+~# docker run -it --name nxp-clpeak-test -h nxp-docker --privileged=true --net=host torizon/arm64v8-debian-wayland-base-vivante /bin/bash
 ----
 
 == Configuring Docker
@@ -77,9 +77,9 @@ Do not exit the Container by typing `exit`.
 +
 [source,console]
 ----
-root@imx8qmmek:~# docker ps -a
-root@imx8qmmek:~# docker cp <ID_CONTAINER>:/clpeak/build/clpeak .
-root@imx8qmmek:~# ./clpeak
+~# docker ps -a
+~# docker cp <ID_CONTAINER>:/clpeak/build/clpeak .
+~# ./clpeak
 ----
 
 .. **EXPECTED OUTPUT**
