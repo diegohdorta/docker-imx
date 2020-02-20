@@ -14,38 +14,19 @@ executing it on i.MX host.
 
 == Pulling and Running Docker
 
-. Pull the latest `torizon/arm64v8-debian-wayland-base-vivante` from Toradex:
+. Pull the latest `arm64v8-ubuntu` tag from `diegohdorta/nxp` hub repository:
 +
 [source,console]
 ----
-~# docker pull torizon/arm64v8-debian-wayland-base-vivante
+~# docker pull diegohdorta/nxp:arm64v8-ubuntu
 ----
 +
 . Run the Docker:
 +
 [source,console]
 ----
-~# docker run -it --name nxp-clpeak-test -h nxp-docker --privileged=true --net=host torizon/arm64v8-debian-wayland-base-vivante /bin/bash
-----
-
-== Configuring Docker
-
-. Install the essential packages:
-+
-[source,console]
-----
-root@nxp-docker:/# apt update && apt install -y vim git build-essential checkinstall \
-                                                cifs-utils nfs-common software-properties-common \
-                                                strace gcc cmake wget
-----
-+
-. Install the GPU libraries:
-+
-[source,console]
-----
-root@nxp-docker:/# apt install -y libopencl-vivante1 libopencl-vivante1-dev libclc-vivante1 \
-                                  libllvm-vivante1 libgal-vivante1 libvsc-vivante1 \
-                                  && apt clean && apt autoremove && rm -rf /var/lib/apt/lists/*
+~# docker run -it --name clpeak-test -h docker --privileged=true --net=host \
+                         diegohdorta/nxp:arm64v8-ubuntu /bin/bash
 ----
 
 == Building Clpeak
@@ -54,26 +35,33 @@ root@nxp-docker:/# apt install -y libopencl-vivante1 libopencl-vivante1-dev libc
 +
 [source,console]
 ----
-root@nxp-docker:/# git clone https://github.com/krrishnarraj/clpeak.git
-root@nxp-docker:/# cd clpeak
-root@nxp-docker:~/clpeak#  git submodule update --init --recursive --remote
+root@docker:/# git clone https://github.com/krrishnarraj/clpeak.git
+root@docker:/# cd clpeak
+root@docker:~/clpeak#  git submodule update --init --recursive --remote
 ----
++
+[IMPORTANT]
+====
+Read the `clpeak` license in https://github.com/krrishnarraj/clpeak/blob/master/LICENSE[here].
+====
 +
 . Compiling the Clpeak:
 +
 [source,console]
 ----
-root@nxp-docker:~/clpeak# mkdir build && cd build
-root@nxp-docker:~/clpeak/build# cmake ..
-root@nxp-docker:~/clpea/buildk# cmake --build .
+root@docker:~/clpeak# mkdir build && cd build
+root@docker:~/clpeak/build# cmake ..
+root@docker:~/clpeak/build# cmake --build .
 ----
 +
-[CAUTION]
-====
-Do not exit the Container by typing `exit`.
-====
+.. You can run the `clpeak` in the container:
 +
-. Press **CTRL + P**, then **CTRL + Q**.
+[source,console]
+----
+root@docker:~/clpeak/build# ./clpeak
+----
++
+.. Or you can exit the container by pressing **CTRL + P**, then **CTRL + Q**.
 +
 [source,console]
 ----
@@ -81,8 +69,13 @@ Do not exit the Container by typing `exit`.
 ~# docker cp <ID_CONTAINER>:/clpeak/build/clpeak .
 ~# ./clpeak
 ----
++
+[CAUTION]
+====
+_**<ID_CONTAINER>**_ must be changed to the correctly ID Container number.
+====
 
-.. **EXPECTED OUTPUT**
+. **EXPECTED OUTPUT**
 +
 [source,console]
 ----
