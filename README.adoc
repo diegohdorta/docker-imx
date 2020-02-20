@@ -140,7 +140,8 @@ IMAGE_INSTALL_append = " net-tools iputils dhcpcd "
 [source,console]
 ----
 IMAGE_INSTALL_append = " python python-pip python3 python3-pip"
-IMAGE_INSTALL_append = " wget git zlib vim tar unzip grep tmux swig  cmake make gtest parted e2fsprogs e2fsprogs-resize2fs "
+IMAGE_INSTALL_append = " wget git zlib vim tar unzip grep tmux swig \
+                         cmake make gtest parted e2fsprogs e2fsprogs-resize2fs "
 ----
 +
 . Build the image:
