@@ -1,3 +1,117 @@
 = Benchmarking Tool to Measure Peak Capabilities of OpenCL Devices
 
-TODO
+This tutorial explains how to compile the https://github.com/krrishnarraj/clpeak.git[Clpeak] on the Docker Container and
+executing it on i.MX host.
+
+== Pulling and Running Docker
+
+. Pull the latest `torizon/arm64v8-debian-wayland-base-vivante` from Toradex:
++
+[source,console]
+----
+~# docker pull torizon/arm64v8-debian-wayland-base-vivante
+----
++
+. Run the Docker:
++
+[source,console]
+----
+~# docker run -it --name nxp-clpeak-test -h nxp-docker --privileged=true --net=host torizon/arm64v8-debian-wayland-base-vivante /bin/bash
+----
+
+== Configuring Docker
+
+. Install the essential packages:
++
+[source,console]
+----
+root@nxp-docker:/# apt update && apt install -y vim git build-essential checkinstall \
+                                                cifs-utils nfs-common software-properties-common \
+                                                strace gcc cmake wget
+----
++
+. Install the GPU libraries:
++
+[source,console]
+----
+root@nxp-docker:/# apt install -y libopencl-vivante1 libopencl-vivante1-dev libclc-vivante1 \
+                                  libllvm-vivante1 libgal-vivante1 libvsc-vivante1 \
+                                  && apt clean && apt autoremove && rm -rf /var/lib/apt/lists/*
+----
+
+== Building Clpeak
+
+. Retrieving the Clpeak:
++
+[source,console]
+----
+root@nxp-docker:/# git clone https://github.com/krrishnarraj/clpeak.git
+root@nxp-docker:/# cd clpeak
+root@nxp-docker:~/clpeak#  git submodule update --init --recursive --remote
+----
++
+. Compiling the Clpeak:
++
+[source,console]
+----
+root@nxp-docker:~/clpeak# mkdir build && cd build
+root@nxp-docker:~/clpeak/build# cmake ..
+root@nxp-docker:~/clpea/buildk# cmake --build .
+----
++
+[CAUTION]
+====
+Do not exit the Container by typing `exit`.
+====
++
+. Press **CTRL + P**, then **CTRL + Q**.
++
+[source,console]
+----
+~# docker ps -a
+~# docker cp <ID_CONTAINER>:/clpeak/build/clpeak .
+~# ./clpeak
+----
+
+.. **EXPECTED OUTPUT**
++
+[source,console]
+----
+Platform: Vivante OpenCL Platform
+  Device: Vivante OpenCL Device GC7000XSVX.6009.0000
+    Driver version  : OpenCL 1.2 V6.4.0.p1.228766 (Linux ARM64)
+    Compute units   : 2
+    Clock frequency : 996 MHz
+
+    Global memory bandwidth (GBPS)
+      float   : 10.01
+      float2  : 13.26
+      float4  : 14.71
+      float8  : 13.28
+      float16 : 9.83
+
+    Single-precision compute (GFLOPS)
+      float   : 23.15
+      float2  : 56.32
+      float4  : 111.55
+      float8  : 116.53
+      float16 : 122.89
+
+    Integer compute (GIOPS)
+      int   : 28.26
+      int2  : 29.83
+      int4  : 31.68
+      int8  : 31.42
+      int16 : 29.25
+
+    Transfer bandwidth (GBPS)
+      enqueueWriteBuffer         : 4.14
+      enqueueReadBuffer          : 0.41
+      enqueueMapBuffer(for read) : 95.76
+        memcpy from mapped ptr   : 0.17
+      enqueueUnmap(after write)  : 95.18
+        memcpy to mapped ptr     : 1.45
+
+    Kernel launch latency : 135.11 us
+
+----
