@@ -1,3 +1,73 @@
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+:source-highlighter: :rouge:
+endif::[]
+
 = OpenCL Platforms and Devices Printer
 
-TODO
+This tutorial explains how to compile the https://github.com/Oblomov/clinfo[Clinfo] on the Docker Container and
+executing it on i.MX host.
+
+== Pulling and Running Docker
+
+. Pull the latest `arm64v8-ubuntu` tag from `diegohdorta/nxp` hub repository:
++
+[source,console]
+----
+~# docker pull diegohdorta/nxp:arm64v8-ubuntu
+----
++
+. Run the Docker:
++
+[source,console]
+----
+~# docker run -it --name cl-test -h docker --privileged=true --net=host \
+                         diegohdorta/nxp:arm64v8-ubuntu /bin/bash
+----
+
+== Building Clinfo
+
+. Retrieving the `clinfo`:
++
+[source,console]
+----
+root@docker:/# git clone https://github.com/Oblomov/clinfo.git
+root@docker:/# cd clinfo
+----
++
+[IMPORTANT]
+====
+Read the `clinfo` license in https://github.com/Oblomov/clinfo/blob/master/LICENSE[here].
+====
++
+. Compiling the Clinfo:
++
+[source,console]
+----
+root@docker:~/clinfo# make
+----
++
+.. You can run the `clinfo` in the container:
++
+[source,console]
+----
+root@docker:~/clinfo# ./clinfo
+----
++
+.. Or you can exit the container by pressing **CTRL + P**, then **CTRL + Q**.
++
+[source,console]
+----
+~# docker ps -a
+~# docker cp <ID_CONTAINER>:/clinfo/clinfo .
+~# ./clinfo
+----
++
+[CAUTION]
+====
+_**<ID_CONTAINER>**_ must be changed to the correctly ID Container number.
+====
