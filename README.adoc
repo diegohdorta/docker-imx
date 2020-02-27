@@ -177,6 +177,7 @@ IMAGE_INSTALL_append = " wget git zlib vim tar unzip grep tmux swig \
 _**<x>**_ refers to the SD Card device. You can check by listing the block devices: `lsblk`.
 ====
 
-=== LICENSE
+== Copyright and License
 
-The `i.MX Docker Applications` is licensed under the https://github.com/diegohdorta/docker-imx/blob/master/LICENSE[BSD 3-Clause License] © 2019 NXP Semiconductor.
+Copyright © 2019-2020 Diego Dorta. Free use of this software is granted under the
+terms of the BSD 3-Clause License. See https://github.com/diegohdorta/docker-imx/blob/master/LICENSE.adoc[LICENSE] for details.
